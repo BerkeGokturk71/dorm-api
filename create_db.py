@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 
 #Create a sqlite engine instance
-engine =create_engine("sqlite:///dormapidb.db")
+engine =create_engine("sqlite:///dormapi.db")
 
 #Create declarative instance
 
