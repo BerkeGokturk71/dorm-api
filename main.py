@@ -4,11 +4,11 @@ from create_db import engine,Base,SessionLocal
 from sqlalchemy.orm import Session
 import model
 import schema
-
+from middleware.log import RateLimitingMiddleware
 Base.metadata.create_all(engine)
 
 app = FastAPI()
-
+app.add_middleware(RateLimitingMiddleware)
 def get_session():
     session = SessionLocal()
     try:
@@ -30,3 +30,5 @@ def create_task(task:schema.ToDoCreate,session:Session = Depends(get_session)):
     session.refresh(tododb)
 
     return tododb
+
+
